@@ -1,0 +1,747 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: black;
+    color: white;
+}
+
+header{
+    margin-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 9%;
+    background-color: transparent;
+    filter: drop-shadow(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);;
+    font-size: 3rem;
+    color: #00ff00;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.logo:hover{
+    transform: scale(1.1);
+}
+
+nav a{
+    font-size: 1.8rem;
+    color: white;
+    margin-left: 4rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.active{
+    color: #3dff2b;
+    border-bottom: 3px solid #00ff0d;
+}
+
+@media(max-width:995px){
+    nav{
+        position: absolute;
+        display: none;
+        top: 0;
+        right: 0;
+        width: 40%;
+        border-left: 3px solid #09ff00;
+        border-bottom: 3px solid #1eff00;
+        border-bottom-left-radius: 2rem;
+        padding: 1rem solid;
+        background-color: #161616;
+        border-top: 0.1rem solid rgba(0,0,0,0.1);
+    }
+
+    nav.active{
+        display: block;
+    }
+
+    nav a{
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+
+    nav a:hover,
+    nav a.active{
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-bottom: 0.5rem solid #01ff0d;
+    }
+}
+
+section{
+    min-height: 100vh;
+    padding: 5rem 9% 5rem;
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+    background-color: black;
+}
+
+.home .home-content h1{
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+span{
+    color: #3cff00;
+}
+
+.home-content h3{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.home-content p{
+    font-size: 1.6rem;
+}
+
+.home-img{
+    border-radius: 50%;
+}
+
+.home-img img{
+    position: relative;
+    width: 32vw;
+    border-radius: 50%;
+    box-shadow: 0 0 25px solid #00ff0d;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.home-img img:hover{
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.social-icons a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    border: 0.2rem solid #3eff03;
+    font-size: 2rem;
+    border-radius: 50%;
+    margin: 3rem 1.5rem 3rem 0;
+    transition: 0.3s ease;
+    color: #00ff0d;
+}
+
+.social-icons a:hover{
+    color: black;
+    transform: scale(1.3) translateY(-5px);
+    background-color: #00ff00;
+    box-shadow: 0  0 25px #1eff00;
+}
+
+.btn{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #48fa02;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #2bff00;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transform: scale3d(1.03);
+    background-color: #1dfa00;
+    color: black;
+    box-shadow: 0 0 25px #48ff00;
+}
+
+.typing-text{
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+
+.typing-text span{
+    position: relative;
+}
+
+.typing-text span::before{
+    content: "software Developer";
+    color: #16ff01;
+    animation: words 20s infinite;
+}
+
+.typing-text span::after{
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 3px solid black;
+    right: -8;
+    animation: cursor 0.6s infinite;
+}
+
+
+@keyframes cursor{
+    to{
+        border-left: 3px solid #48ff00;
+    }
+}
+
+@keyframes words{
+    0%, 20%{
+        content: "Web Developer";
+    }
+    21%, 40%{
+        content: "Developer";
+    }
+    41%, 60%{
+        content: "Web Designer";
+    }
+    61%, 80%{
+        content: "Youtuber";
+    }
+    81%, 90%{
+        content: "Script Writer";
+    }
+    91%, 100%{
+        content: "Ethical Hacker";
+    }
+}
+
+
+
+@media (max-width: 1000px){
+    .home{
+        gap: 4rem;
+    }
+}
+
+@media(max-width:995px){
+    .home{
+        flex-direction: column;
+        margin: 5rem 4rem;
+    }
+
+    .home .home-content h3{
+        font-size: 2.5rem;
+    }
+
+    .home-content h1{
+        font-size: 5rem;
+    }
+    
+    
+    
+}
+
+.WORK{
+    background: #000000;
+}
+.WORK h1 {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.WORK h1 span{
+    color: #ff0000;
+}
+.workbook{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    align-items: center;
+    gap: 5.5rem;
+   
+  
+}
+.workbook .book-box{
+    position: relative ;
+    border-radius: 3rem;
+    box-shadow:0 0 1rem #801002;
+    overflow: hidden;
+    display: flex;
+    width: 45vh;
+    height: 50vh;
+}
+.book-box img{
+    width: 100%;
+    height: 100%;
+    transition:  .5s ease;
+}
+
+.book-box:hover img{
+    transform: scale(1.1);
+}
+.book-box .book-layer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( rgba(140, 0, 255, 0.1), #ff0000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+    
+}
+.book-box:hover .book-layer{
+    transform: translateY(0);
+}
+.book-layer h4{
+    font-size: 2.3rem;
+    color: #ff0077;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.book-layer p{
+    font-size: 1.5rem;
+    margin: .3rem 0 1rem;
+    color: #fa81a9;
+}
+
+
+.Project{
+    background: #000000;
+}
+.Project h1{
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.Project h1 span{
+    color: #cc00ff;
+}
+.Download{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 5.5rem;
+}
+.Download .box{
+    position: relative ;
+    border-radius: 2rem;
+    box-shadow:0 0 1rem #cc00ff;
+    overflow: hidden;
+    display: flex;
+}
+.box img{
+    width: 100%;
+    transition:  .5s ease;
+}
+.box:hover img{
+    transform: scale(1.1);
+}
+.box .layer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( rgba(140, 0, 255, 0.1), #a200ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+.box:hover .layer{
+    transform: translateY(0);
+}
+.layer h4{
+    font-size: 2.3rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+.layer p{
+    font-size: 1rem;
+    margin: .3rem 0 1rem;
+    color: #f1efef;
+}
+.layer ul{
+    font-size: 1.5rem;
+    margin: .3rem 0 1rem;
+    
+}
+
+.Contact h2{
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.Contact h2 span{
+    color: #00ff6a;
+}
+.Contact form{
+    min-width: 60rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.Contact form .input-box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.Contact form .input-box input,
+.Contact form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: #ffffff;
+    background:linear-gradient( rgba(252, 249, 249, 0.363), #00ff00);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.Contact form .input-box input{
+    width: 49%;
+}
+.Contact form textarea{
+    resize: none;
+}
+.Contact form .btn3{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #00ff15;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #216e1f;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.Contact form .btn3:hover{
+    transform: scale3d(1.03);
+    background-color: #09ff00;
+    color: black;
+    box-shadow: 0 0 25px #00ff2a;
+}
+footer h1 {
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+footer .infom{
+   font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;;
+    margin-left: 4rem;
+}
+
+/* Mobile and Tablet Mode Adjustments */
+@media (max-width: 768px) { /* Mobile mode adjustments */
+    html {
+        font-size: 50%;
+    }
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+        margin-left: 2rem;
+    }
+
+    .home {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .home-content h1 {
+        font-size: 4rem;
+    }
+
+    .home-content h3 {
+        font-size: 2.5rem;
+    }
+
+    .home-content p {
+        font-size: 1.4rem;
+    }
+
+    .home-img img {
+        width: 60%;
+        align-items: center;
+    }
+
+    .social-icons a {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .WORK h1 {
+        font-size: 3.5rem;
+    }
+
+    .workbook {
+        grid-template-columns: 0.5fr;
+        gap: 2rem;
+    }
+
+    .book-box {
+        width: 70%;
+        height: 50%;
+    }
+
+    .Contact form {
+        min-width: 70%;
+        width: 50%;
+    }
+
+    footer h1 {
+        font-size: 1.6rem;
+    }
+    .Project h1{
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+    .Project h1 span{
+        color: #cc00ff;
+    }
+    .Download{
+        display: grid;
+        grid-template-columns: repeat(1, 0.9fr);
+        align-items: center;
+        gap: 5.5rem;
+    }
+    .Download .box{
+        position: relative ;
+        border-radius: 2rem;
+        box-shadow:0 0 1rem #cc00ff;
+        overflow: hidden;
+        display: flex;
+    }
+    .box img{
+        width: 100%;
+        transition:  .5s ease;
+    }
+    .box:hover img{
+        transform: scale(1.1);
+    }
+    .box .layer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( rgba(140, 0, 255, 0.1), #a200ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 4rem;
+        transform: translateY(100%);
+        transition: .5s ease;
+    }
+    .box:hover .layer{
+        transform: translateY(0);
+    }
+    .layer h4{
+        font-size: 2rem;
+        
+    
+    }
+    .layer p{
+        font-size: 1.1rem;
+        margin: .3rem 0 1rem;
+        
+    }
+    .layer ul{
+        font-size: 1.5rem;
+        margin: .3rem 0 1rem;
+        
+    }
+    .workbook .book-box{
+        position: relative ;
+        border-radius: 3rem;
+        box-shadow:0 0 1rem #801002;
+        overflow: hidden;
+        display: flex;
+        width: 43vh;
+        height: 45vh;
+    }
+    .book-box img{
+        width: 100%;
+        height: 100%;
+        transition:  .5s ease;
+    }
+    
+    .book-box:hover img{
+        transform: scale(1.1);
+    }
+    .book-box .book-layer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( rgba(140, 0, 255, 0.1), #ff0000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 4rem;
+        transform: translateY(100%);
+        transition: .5s ease;
+        
+    }
+    .book-box:hover .book-layer{
+        transform: translateY(0);
+    }
+    .book-layer h4{
+        font-size: 2.3rem;
+        color: #ff0077;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    .book-layer p{
+        font-size: 1.5rem;
+        margin: .3rem 0 1rem;
+        color: #fa81a9;
+    }
+}
+
+@media (max-width: 995px) and (min-width: 769px) { /* Tablet mode adjustments */
+    html {
+        font-size: 56%;
+    }
+
+    header {
+        padding: 1rem 7%;
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+
+    nav a {
+        font-size: 1.6rem;
+        margin-left: 3rem;
+    }
+
+    .home {
+        gap: 4rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-content h3 {
+        font-size: 3rem;
+    }
+
+    .home-content p {
+        font-size: 1.5rem;
+    }
+
+    .home-img img {
+        width: 50%;
+    }
+
+    .social-icons a {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        font-size: 1.5rem;
+        padding: 1rem 2.5rem;
+    }
+
+    .WORK h1 {
+        font-size: 5rem;
+    }
+
+    .workbook {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .book-box {
+        width: 60%;
+        height: auto;
+    }
+
+    .Contact form {
+        min-width: auto;
+        width: 80%;
+    }
+
+    footer h1 {
+        font-size: 1.8rem;
+    }
+}

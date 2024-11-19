@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: black;
+    color: white;
+    align-items: center;
+}
+
+.WORK{
+    background: #000000;
+}
+.WORK h1 {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.WORK h1 span{
+    color: #ff0000;
+}
+.workbook{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    align-items: center;
+    gap: 5.5rem;
+   
+  
+}
+.workbook .book-box{
+    position: relative ;
+    border-radius: 3rem;
+    box-shadow:0 0 1rem #801002;
+    overflow: hidden;
+    display: flex;
+    width:100vh;
+    height: 100vh;
+}
+.book-box img{
+    width: 100%;
+    height: 100%;
+    transition:  .5s ease;
+}
+
+.book-box:hover img{
+    transform: scale(1.1);
+}
+.book-box .book-layer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( rgba(140, 0, 255, 0.1), #ff0000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+    
+}
+.book-box:hover .book-layer{
+    transform: translateY(0);
+}
+.book-layer h4{
+    font-size: 2.3rem;
+    color: #ff0077;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.book-layer p{
+    font-size: 1.5rem;
+    margin: .3rem 0 1rem;
+    color: #fa81a9;
+}
+
+.btn{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #48fa02;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #2bff00;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover{
+    transform: scale3d(1.03);
+    background-color: #1dfa00;
+    color: black;
+    box-shadow: 0 0 25px #48ff00;
+}
