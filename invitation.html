@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebration of Knowledge - Teachers' Appreciation Party</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f307a4;
+            --secondary: #9370db;
+            --accent: #ffd700;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff028d 0%, #ffd104 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .invitation-container {
+            max-width: 100%;
+            min-height: 80vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .invitation-card {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(240, 234, 236, 0.527);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.747);
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            margin-bottom: 30px;
+        }
+        
+        .card-front, .card-back {
+            padding: 30px;
+            backface-visibility: hidden;
+        }
+        
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .invitation-card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .main-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+            color: var(--primary);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .details {
+            margin: 25px 0;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .detail-text {
+            text-align: left;
+        }
+        
+        .detail-text h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+        
+        .detail-text p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .countdown-item {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            min-width: 60px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(23, 23, 24, 0.671);
+        }
+        
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        
+        
+    
+        .flip-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.767);
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #fcfcfb94;
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #fcf5fd7e;
+            transform: translateY(-3px);
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: float-around 15s linear infinite;
+        }
+        
+        @keyframes float-around {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50vw, 25vh) rotate(90deg); }
+            50% { transform: translate(25vw, 50vh) rotate(180deg); }
+            75% { transform: translate(-25vw, 25vh) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .flip-invitation {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        /* Name Input Modal */
+        .name-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .name-modal-content {
+            background: rgba(245, 186, 225, 0.966);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .name-modal h2 {
+            color: #ff05c1;
+            margin-bottom: 20px;
+        }
+        .name-modal p{
+            color: #cc02ff;
+        }
+        
+        .name-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #1f1d1d;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        
+        .name-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .submit-name {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-name:hover {
+            background: #5a4acd;
+            transform: translateY(-2px);
+        }
+        
+        .personalized-name {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 500px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .name-modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Name Input Modal -->
+    <div class="name-modal" id="nameModal">
+        <div class="name-modal-content">
+            <h2>Enter Your Name</h2>
+            <p>Please enter your name to personalize your invitation:</p>
+            <input type="text" class="name-input" id="userName" placeholder="Your name">
+            <button class="submit-name" onclick="saveName()">Submit</button>
+        </div>
+    </div>
+    
+    <div class="floating-elements">
+        <div class="floating-element" style="top:20%;left:10%;font-size:30px;animation-duration:20s;">📚</div>
+        <div class="floating-element" style="top:70%;left:80%;font-size:40px;animation-duration:25s;animation-delay:-5s;">✏️</div>
+        <div class="floating-element" style="top:40%;left:60%;font-size:25px;animation-duration:18s;animation-delay:-2s;">💖</div>
+        <div class="floating-element" style="top:80%;left:30%;font-size:35px;animation-duration:22s;animation-delay:-7s;">🏆</div>
+    </div>
+    
+    <div class="invitation-container">
+        <div class="invitation-card" id="invitationCard">
+            
+            
+            <div class="card-front">
+                <div class="header">
+                    <div class="main-icon">🎓</div>
+                    <h1>Forever Grateful</h1>
+                    <p>invite All Teachers for Party</p>
+                    <div class="personalized-name" id="personalizedName"></div>
+                </div>
+                
+                <div class="details">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="detail-text">
+                            <h3>Date & Time</h3>
+                            <p>Thustday, August 07, 2025 at 11:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="detail-text">
+                            <h3>Location</h3>
+                            <p>B/kandakapuulpatha M.V, Home Science Lab</p>
+                        </div>
+                    </div>
+                
+                </div>
+                
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Mins</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Secs</div>
+                    </div>
+                </div>
+                
+                <div class="gallery">
+                    <div class="gallery-item"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="gallery-item"><i class="fas fa-book-open"></i></div>
+                    <div class="gallery-item"><i class="fas fa-award"></i></div>
+                    <div class="gallery-item"><i class="fas fa-music"></i></div>
+                    <div class="gallery-item"><i class="fas fa-camera"></i></div>
+                    <div class="gallery-item"><i class="fas fa-gift"></i></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-primary" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> Confirm Attendance
+                    </a>
+                    <a href="#directionModal" class="btn btn-secondary" onclick="showDirectionModal()">
+                        <i class="fas fa-map"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-back">
+                <div class="header">
+                    <div class="main-icon">❤️</div>
+                    <h1 style="color:white;background:none;-webkit-background-clip:unset;background-clip:unset;">Thank You Teachers!</h1>
+                    <div class="personalized-name" style="color:var(--accent);" id="personalizedNameBack"></div>
+                </div>
+                
+                <div class="details">
+                    <div class="detail-item">
+                        <div class="detail-icon" style="background:white;color:var(--primary);">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="detail-text">
+                            <p style="color:white;font-style:italic;">"A good teacher can inspire hope, ignite the imagination, and instill a love of learning."</p>
+                            <p style="color:var(--accent);margin-top:5px;">- Brad Henry</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon" style="background:white;color:var(--primary);">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="detail-text">
+                            <h3 style="color:white;">Event Highlights</h3>
+                            <p style="color:#ddd;">Award ceremony • Live music • Dinner buffet • Photo booth • Surprise performances</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    <div id="directionModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:100;display:flex;justify-content:center;align-items:center;">
+        <div style="background:white;padding:20px;border-radius:10px;max-width:90%;max-height:90%;overflow:auto;position:relative;">
+            <button onclick="hideDirectionModal()" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:20px;cursor:pointer;">×</button>
+            <h2 style="margin-bottom:15px;color:var(--primary);">Directions to Venue</h2>
+            <p><strong>B/Kandakapuulpotha M.V</strong></p>
+            <p>Home Science Lab</p>
+            
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798511757686!2d79.85237241539392!3d6.914657495003809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnNTIuOCJOIDc5wrA1MScxNS4xIkU!5e0!3m2!1sen!2slk!4v1620000000000!5m2!1sen!2slk" 
+                width="100%" 
+                height="300" 
+                style="border:0;margin-top:15px;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    
+    <script>
+        // Check if name is saved in localStorage
+        let userName = localStorage.getItem('userName');
+        
+        // Show name modal if name not set
+        if (!userName) {
+            document.getElementById('nameModal').style.display = 'flex';
+        } else {
+            displayPersonalizedName();
+        }
+        
+        // Save name function
+        function saveName() {
+            const nameInput = document.getElementById('userName');
+            if (nameInput.value.trim() !== '') {
+                userName = nameInput.value.trim();
+                localStorage.setItem('userName', userName);
+                document.getElementById('nameModal').style.display = 'none';
+                displayPersonalizedName();
+                createConfetti();
+            } else {
+                alert('Please enter your name');
+            }
+        }
+        
+        // Display personalized name
+        function displayPersonalizedName() {
+            if (userName) {
+                document.getElementById('personalizedName').textContent = `Honored Guest: ${userName}`;
+                document.getElementById('personalizedNameBack').textContent = `Dear ${userName}, thank you for celebrating with us!`;
+                
+                // Update WhatsApp button with personalized message
+                const whatsappBtn = document.getElementById('whatsappBtn');
+                whatsappBtn.href = `https://wa.me/94771234567?text=I'm%20${encodeURIComponent(userName)}%20and%20I'm%20excited%20to%20attend%20the%20Teachers'%20Appreciation%20Party%20on%20December%2016th!%20🎉`;
+            }
+        }
+        
+        
+        
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('August 07, 2025 11:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('countdown').innerHTML = '<div style="font-size:1.5rem;color:var(--primary);font-weight:bold;">The event has started! See you there!</div>';
+            }
+        }
+        
+        let countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Create confetti
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        function getRandomColor() {
+            const colors = ['#6a5acd', '#9370db', '#ffd700', '#ff6347', '#3cb371', '#00bfff'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Modal functions
+        function showDirectionModal() {
+            document.getElementById('directionModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideDirectionModal() {
+            document.getElementById('directionModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Initial confetti
+        window.onload = function() {
+            createConfetti();
+            
+            // Change main icon periodically
+            setInterval(() => {
+                const icons = ['🎓', '💖', '📚', '✏️', '🏆', '🎉'];
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                document.querySelector('.main-icon').textContent = randomIcon;
+            }, 3000);
+            
+            // Allow pressing Enter in name input
+            document.getElementById('userName').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    saveName();
+                }
+            });
+        };
+    </script>
+</body>
+</html>
