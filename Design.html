@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Thuli — Creative</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071026;
+    --panel:#08132a;
+    --muted:#15eb99;
+    --accent:#ffa600;
+    --neon-blue:#0026ff;
+    --neon-pink:#ff00bb;
+    --card-radius:16px;
+    --glass: rgba(255, 255, 255, 0.03);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto;
+    background:
+      radial-gradient(800px 300px at 10% 8%, rgba(255, 0, 234, 0.03), transparent 6%),
+      radial-gradient(600px 300px at 95% 40%, rgba(0,200,255,0.02), transparent 6%),
+      linear-gradient(180deg,#061026 0%, #04101b 100%);
+    color:#e9f6ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:18px;
+  }
+
+  /* topbar */
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .logo{font-weight:800;letter-spacing:1px;font-size:20px;color:#e6f8ff}
+  .tag{color:var(--muted);font-size:13px;margin-left:8px}
+  nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:10px;font-size:14px}
+  nav a:hover{background:rgba(255,255,255,0.02)}
+
+  /* layout */
+  .container{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+  @media (max-width:900px){ .container{grid-template-columns:1fr} }
+
+  /* profile / left */
+  .profile{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03);
+    position:relative;min-height:160px;
+  }
+  .avatar{
+    width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;
+    background:linear-gradient(135deg,var(--neon-blue),var(--neon-pink));color:#001;box-shadow:0 8px 30px rgba(0,200,255,0.06);
+    font-size:34px;margin-bottom:10px;
+  }
+  .profile h2{margin:0;font-size:18px}
+  .profile p{margin:6px 0 12px;color:var(--muted);font-size:13px}
+  .like-btn{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;font-weight:600;
+  }
+  .like-btn.liked{background:linear-gradient(90deg,var(--neon-blue),var(--neon-pink));color:#001;border:none;box-shadow:0 8px 30px rgba(255,80,160,0.06)}
+
+  /* banner */
+  .banner{
+    margin-top:14px;height:48px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);position:relative;background:linear-gradient(90deg, rgba(255,154,31,0.02), rgba(0,230,255,0.02));
+  }
+  .marquee{position:absolute;white-space:nowrap;top:50%;transform:translateY(-50%);animation:marq 12s linear infinite;font-weight:700;color:var(--accent);padding-left:100%}
+  @keyframes marq{0%{transform:translateX(0) translateY(-50%)}100%{transform:translateX(-120%) translateY(-50%)}}
+
+  /* products */
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media (max-width:900px){ .products{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .products{grid-template-columns:1fr} }
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+    border-radius:var(--card-radius);padding:18px;text-align:center;position:relative;min-height:260px;border:1px solid rgba(255, 8, 173, 0.966);
+    transition:transform .25s ease, box-shadow .25s ease; overflow:hidden;
+    box-shadow: 0 6px 18px rgba(170, 4, 247, 0.5);
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(2, 228, 190, 0.6)}
+  .icon{width:110px;height:110px;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700}
+  .title{font-weight:800;font-size:18px;margin-bottom:6px}
+  .subtitle{color:#ffd18f;font-weight:700;margin-bottom:12px}
+  .desc{color:var(--muted);font-size:13px;margin-bottom:36px}
+  .order-btn{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;padding:10px 14px;border-radius:12px;border:1px solid rgba(204, 0, 255, 0.568);background:transparent;cursor:pointer}
+
+  /* modal (order form) */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,15,0.7);display:flex;align-items:center;justify-content:center;z-index:1000;padding:16px}
+  .modal{
+    width:520px;max-width:100%;border-radius:14px;padding:18px;background:linear-gradient(180deg,#071026,#03101a);border:1px solid rgba(255,255,255,0.03);
+    color:#cfefff;max-height:95vh;overflow:auto;
+  }
+  .modal h3{margin:0 0 10px}
+  .close-x{position:absolute;right:18px;top:18px;cursor:pointer;color:#99cbe0}
+  .field{margin-bottom:12px}
+  label{display:block;font-size:13px;color:#ffc67a;margin-bottom:6px}
+  input[type="text"], input[type="datetime-local"], textarea, select{
+    width:100%;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:#e9f6ff;outline:none;font-size:14px;
+  }
+  textarea{min-height:90px;resize:vertical}
+  .colors{display:flex;gap:8px;flex-wrap:wrap}
+  .color-pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;background:rgba(255,255,255,0.01);font-size:13px}
+  .color-pill.active{box-shadow:0 8px 28px rgba(12,200,255,0.06);transform:translateY(-3px)}
+  .file-preview img{max-width:100%;border-radius:8px;margin-top:8px}
+  .price{font-size:16px;font-weight:800;color:var(--accent);margin:10px 0}
+  .send-btn{width:100%;padding:12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--neon-blue));color:#021;font-weight:800;border:none;cursor:pointer;font-size:16px}
+  .small{font-size:12px;color:#99cbe0;margin-top:8px}
+
+  /* mobile: modal full screen effect for easier input */
+  @media (max-width:520px){
+    .modal{width:100%;height:100%;border-radius:0;padding:18px 14px;display:flex;flex-direction:column;justify-content:flex-start}
+    .modal .send-btn{position:sticky;bottom:16px;margin-top:10px}
+  }
+
+  /* subtle sparks */
+  .particles{position:absolute;inset:0;pointer-events:none}
+  .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#ffd48a 0%, rgba(255,154,31,0.6) 40%, transparent 70%);filter:blur(6px);opacity:0.8;animation:float 6s linear infinite}
+  @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+
+  /* helper small screens adjustments */
+  .top-actions{display:flex;gap:8px}
+  .admin-btn{display:none} /* stage1 no admin visible; keep hidden or enable later */
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div>
+      <div class="logo">Thuli <span class="tag">Creative</span></div>
+    </div>
+    <nav>
+      <a href="thuli.html">Products</a>
+      <a href="index.html">Contact</a>
+    </nav>
+    <div class="top-actions" style="margin-left:10px">
+      <!-- admin hidden in stage1 -->
+    </div>
+  </div>
+
+  <div class="container">
+    <aside class="profile" aria-label="Profile">
+      <div class="avatar" id="avatar">Thuli</div>
+      <h2 id="profileName">Thuli</h2>
+      <p>Graphic Designer </p>
+
+      <button class="like-btn" id="mainLikeBtn"><span id="likeEmoji">❤</span> <span id="likeText">Like</span></button>
+
+      <div class="banner" style="margin-top:14px">
+        <div class="marquee">🔥 Special this week: Poster 20% off • Fast WhatsApp orders • Upload reference images 🔥</div>
+      </div>
+
+      <div style="margin-top:12px;color:var(--muted);font-size:13px">
+        Liked products: <strong id="likedCount">0</strong>
+      </div>
+    </aside>
+
+    <main>
+      <div style="position:relative;margin-bottom:12px">
+        <div class="particles" aria-hidden="true">
+          <div class="spark" style="left:10%;top:10%;animation-duration:6s"></div>
+          <div class="spark" style="left:85%;top:30%;animation-duration:7s"></div>
+          <div class="spark" style="left:45%;top:70%;animation-duration:5.5s"></div>
+        </div>
+
+        <section id="products" class="products">
+          <div class="card" data-product="Invitation Design">
+            <div class="icon" style="background:linear-gradient(135deg,#ff9a1f22,#00e6ff55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><path d="M3 7h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">INVITATION</div>
+            <div class="subtitle">DESIGN</div>
+            <div class="desc">Elegant wedding & party invitations — editable text & print-ready</div>
+            <button class="order-btn" data-open="Invitation Design">ORDER NOW</button>
+          </div>
+
+          <div class="card" data-product="Poster Design">
+            <div class="icon" style="background:linear-gradient(135deg,#00e6ff22,#ff3ecb55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">POSTER</div>
+            <div class="subtitle">DESIGN</div>
+            <div class="desc">Eye-catching posters for events, ads & promotions</div>
+            <button class="order-btn" data-open="Poster Design">ORDER NOW</button>
+          </div>
+
+          <div class="card" data-product="Business Card Design">
+            <div class="icon" style="background:linear-gradient(135deg,#ff3ecb22,#ff9a1f55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">BUSINESS</div>
+            <div class="subtitle">CARD DESIGN</div>
+            <div class="desc">Professional corporate cards, print-ready files</div>
+            <button class="order-btn" data-open="Business Card Design">ORDER NOW</button>
+          </div>
+
+          <div class="card" data-product="Thank You Card Design">
+            <div class="icon" style="background:linear-gradient(135deg,#00e6ff22,#ff9a1f55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><path d="M3 7h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">THANK YOU</div>
+            <div class="subtitle">CARD DESIGN</div>
+            <div class="desc">Warm thank-you cards for customers & guests</div>
+            <button class="order-btn" data-open="Thank You Card Design">ORDER NOW</button>
+          </div>
+
+          <div class="card" data-product="Custom Design">
+            <div class="icon" style="background:linear-gradient(135deg,#ff3ecb22,#00e6ff55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">CUSTOM</div>
+            <div class="subtitle">DESIGN</div>
+            <div class="desc">Tell your idea — posters, invites, logos & more</div>
+            <button class="order-btn" data-open="Custom Design">ORDER NOW</button>
+          </div>
+
+          <div class="card" data-product="Social Media Pack">
+            <div class="icon" style="background:linear-gradient(135deg,#00e6ff22,#ff3ecb55);"><svg width="54" height="54" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.2"/></svg></div>
+            <div class="title">SOCIAL</div>
+            <div class="subtitle">MEDIA PACK</div>
+            <div class="desc">Post templates, stories, & cover images</div>
+            <button class="order-btn" data-open="Social Media Pack">ORDER NOW</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- modal root -->
+  <div id="modalRoot" style="display:none"></div>
+
+<script>
+/* =================== CONFIG ===================
+   Replace WHATSAPP_NUMBER if needed.
+   ================================================= */
+const WHATSAPP_NUMBER = "+94754551129";
+
+/* Pricing */
+const basePrices = {
+  "Invitation Design": 850,
+  "Poster Design": 1200,
+  "Business Card Design": 450,
+  "Thank You Card Design": 320,
+  "Custom Design": 1000,
+  "Social Media Pack": 900
+};
+const extras = { perColor: 40, expressFee: 300 };
+
+/* Storage keys */
+const PROFILE_KEY = "thuli_profile_v1";
+const LIKES_KEY = "thuli_likes_v1";
+
+/* --- Init profile & likes --- */
+(function init(){
+  const profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+  if(profile.name) document.getElementById('profileName').textContent = profile.name;
+  document.getElementById('avatar').textContent = (profile.name ? profile.name[0] : 'T').toUpperCase();
+
+  const likes = JSON.parse(localStorage.getItem(LIKES_KEY) || "[]");
+  document.getElementById('likedCount').textContent = likes.length;
+  if(likes.length) {
+    document.getElementById('mainLikeBtn').classList.add('liked');
+    document.getElementById('likeText').textContent = 'Liked';
+  }
+})();
+
+/* Like button toggles demo likes */
+document.getElementById('mainLikeBtn').addEventListener('click', ()=>{
+  const btn = document.getElementById('mainLikeBtn');
+  let likes = JSON.parse(localStorage.getItem(LIKES_KEY) || "[]");
+  if(likes.length === 0){
+    // add first two product names as liked sample
+    const grid = Array.from(document.querySelectorAll('.card')).map(c=>c.dataset.product);
+    likes = grid.slice(0,2);
+    btn.classList.add('liked'); document.getElementById('likeText').textContent = 'Liked';
+  } else {
+    likes = [];
+    btn.classList.remove('liked'); document.getElementById('likeText').textContent = 'Like';
+  }
+  localStorage.setItem(LIKES_KEY, JSON.stringify(likes));
+  document.getElementById('likedCount').textContent = likes.length;
+});
+
+/* Open order modal when click ORDER NOW */
+document.querySelectorAll('.order-btn').forEach(btn=>{
+  btn.addEventListener('click', (e)=> openOrderModal(e.currentTarget.dataset.open));
+});
+
+/* Build order modal - mobile-friendly */
+function openOrderModal(productName){
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = '';
+  root.style.display = 'block';
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true">
+      <div style="position:relative">
+        <div class="close-x" id="closeModal">✕</div>
+        <h3>Order — ${escapeHtml(productName)}</h3>
+      </div>
+
+      <div class="field"><label>Your name</label><input id="inpName" type="text" placeholder="e.g. Saman Perera"></div>
+      <div class="field"><label>Phone / WhatsApp</label><input id="inpPhone" type="text" placeholder="+94 7x xxx xxxx"></div>
+      <div class="field"><label>Design details</label><textarea id="inpDetails" placeholder="Write text, style, references..."></textarea></div>
+      <div class="field"><label>Deadline</label><input id="inpDeadline" type="datetime-local"></div>
+
+      <div class="field">
+        <label>Preferred colors (tap to select)</label>
+        <div class="colors" id="colorPills">
+          <div class="color-pill" data-color="None">None</div>
+          <div class="color-pill" data-color="Red">Red</div>
+          <div class="color-pill" data-color="Orange">Orange</div>
+          <div class="color-pill" data-color="Yellow">Yellow</div>
+          <div class="color-pill" data-color="Green">Green</div>
+          <div class="color-pill" data-color="Blue">Blue</div>
+          <div class="color-pill" data-color="Purple">Purple</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Upload reference image/file (jpg/png/pdf)</label>
+        <input id="fileInput" type="file" accept="image/*,application/pdf">
+        <div id="filePreview" class="file-preview"></div>
+      </div>
+
+      <div class="price">PRICE: <span id="priceValue">0</span> LKR</div>
+      <button id="sendWhatsApp" class="send-btn">SEND ORDER (WhatsApp)</button>
+      <div class="small">Clicking SEND opens WhatsApp with a pre-filled message. You can replace the number in the code later.</div>
+    </div>
+  `;
+  root.appendChild(backdrop);
+
+  // close handlers
+  backdrop.addEventListener('click', e => { if(e.target === backdrop) closeModal(); });
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  function closeModal(){ root.style.display='none'; root.innerHTML=''; }
+
+  // form elements
+  const nameEl = backdrop.querySelector('#inpName');
+  const phoneEl = backdrop.querySelector('#inpPhone');
+  const detailsEl = backdrop.querySelector('#inpDetails');
+  const deadlineEl = backdrop.querySelector('#inpDeadline');
+  const fileInput = backdrop.querySelector('#fileInput');
+  const filePreview = backdrop.querySelector('#filePreview');
+  const priceEl = backdrop.querySelector('#priceValue');
+  const sendBtn = backdrop.querySelector('#sendWhatsApp');
+  const colorPills = backdrop.querySelectorAll('.color-pill');
+
+  // load profile defaults
+  const profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+  if(profile.name) nameEl.value = profile.name;
+  if(profile.phone) phoneEl.value = profile.phone;
+
+  // color selection logic
+  colorPills.forEach(p=>{
+    p.addEventListener('click', ()=>{
+      if(p.dataset.color === 'None'){
+        colorPills.forEach(x=>x.classList.remove('active'));
+        p.classList.add('active');
+      } else {
+        const noneP = Array.from(colorPills).find(x=>x.dataset.color==='None');
+        noneP.classList.remove('active');
+        p.classList.toggle('active');
+      }
+      updatePrice();
+    });
+  });
+
+  // file input preview (store base64 for possible server later)
+  let attached = null;
+  fileInput.addEventListener('change', e=>{
+    const f = e.target.files && e.target.files[0];
+    if(!f) return;
+    if(f.size > 4 * 1024 * 1024){ alert('File too large (use smaller image)'); return; }
+    const reader = new FileReader();
+    reader.onload = ()=> {
+      attached = { name: f.name, type: f.type, base64: reader.result };
+      if(f.type.startsWith('image/')){
+        filePreview.innerHTML = `<img src="${reader.result}" alt="preview">`;
+      } else {
+        filePreview.innerHTML = `<div style="padding:8px;border-radius:8px;background:rgba(255,255,255,0.02)">${escapeHtml(f.name)}</div>`;
+      }
+    };
+    reader.readAsDataURL(f);
+  });
+
+  // price calc
+  function updatePrice(){
+    const base = basePrices[productName] || 700;
+    let total = base;
+    const selected = Array.from(colorPills).filter(x=>x.classList.contains('active')).map(x=>x.dataset.color).filter(c=>c!=='None');
+    if(selected.length) total += selected.length * extras.perColor;
+    if(deadlineEl.value){
+      const dl = new Date(deadlineEl.value);
+      const diff = (dl - new Date()) / (1000*60*60*24);
+      if(diff < 3) total += extras.expressFee;
+    }
+    priceEl.textContent = total.toFixed(0);
+    return total;
+  }
+  deadlineEl.addEventListener('change', updatePrice);
+  setTimeout(updatePrice, 50);
+
+  // Send to WhatsApp
+  sendBtn.addEventListener('click', ()=>{
+    const name = nameEl.value.trim() || 'Anonymous';
+    const phone = phoneEl.value.trim() || 'Not provided';
+    const details = detailsEl.value.trim() || '-';
+    const dlText = deadlineEl.value ? (new Date(deadlineEl.value)).toLocaleString() : 'No deadline';
+    const colors = Array.from(colorPills).filter(x=>x.classList.contains('active')).map(x=>x.dataset.color).filter(c=>c!=='None');
+    const price = updatePrice();
+
+    // save profile locally
+    localStorage.setItem(PROFILE_KEY, JSON.stringify({ name, phone }));
+
+    // Build message
+    const msgLines = [
+      'New Order from Thuli website',
+      'Product: ' + productName,
+      'Name: ' + name,
+      'Phone: ' + phone,
+      'Details: ' + details,
+      'Deadline: ' + dlText,
+      'Colors: ' + (colors.length? colors.join(', ') : 'None'),
+      'Price: ' + price.toFixed(0) + ' LKR'
+    ];
+    let msg = msgLines.join('\\n');
+
+    // If attached small image, include note (can't attach file via wa.me) - user will upload manually if needed
+    if(attached) msg += '\\n(Attached file saved on-site preview)';
+
+    const to = encodeURIComponent(WHATSAPP_NUMBER.replace(/\+/g,''));
+    const text = encodeURIComponent(msg);
+    const url = 'https://wa.me/' + to + '?text=' + text;
+    window.open(url, '_blank');
+    alert('WhatsApp window should open — if not, allow popups. Order details are prefilled.');
+    closeModal();
+  });
+}
+
+/* small helper */
+function escapeHtml(s=''){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* double-click card to open modal too (convenience) */
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('dblclick', ()=> openOrderModal(c.dataset.product));
+});
+</script>
+
+</body>
+</html>
