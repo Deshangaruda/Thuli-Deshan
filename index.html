@@ -702,7 +702,7 @@
         .sponsor-icon {
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -710,7 +710,7 @@
             margin-bottom: 15px;
             font-size: 2rem;
             color: var(--primary);
-            border: 1px solid rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(0, 238, 255, 0);
             transition: all 0.3s;
         }
 
@@ -838,6 +838,13 @@
 <body>
     <!-- Loading Screen -->
     <div id="loader">
+        <div class="sponsors">
+            <div class="sponsor-item animate-left" style="animation-delay: 0.3s">
+                <div class="sponsor-icon">
+                    <img src="sample/logo.png" alt="">
+                </div>
+            </div>
+            </div>
         <div class="loader-logo"><center>NIGHT MIRROR</center></div>
         <div class="loader-progress">
             <div class="loader-progress-bar"></div>
@@ -858,7 +865,7 @@
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="main.html">Main</a></li>
+                <li><a href="main.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -1063,6 +1070,7 @@
                 <a href="https://www.instagram.com/thuli_deshan/?utm_source=ig_web_button_share_sheet"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/share/14Rcz9qw4N1/"><i class="fab fa-facebook-f"></i></a>
                 
+                
             </div>
             <div class="sponsors">
             <div class="sponsor-item animate-left" style="animation-delay: 0.3s">
@@ -1176,22 +1184,6 @@
                 }
             });
         });
-    </script>
-    <script>
-        fetch("https://api.ipify.org?format=json")
-            .then(res => res.json())
-            .then(data => {
-                fetch("https://script.google.com/macros/s/AKfycbx7iwFTEbyj4bY4aKERjUA1y7iGZILIVIndrz0DkOtxKKCflrvDmujzZZFhx5QTo4HZLQ/exec" , {
-                    method: "POST",
-                    body: JSON.stringify({
-                        ip: data.ip,
-                        timestamp: new Date().toLocaleString()
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-            });
     </script>
 </body>
 </html>
