@@ -833,6 +833,221 @@
             background: linear-gradient(var(--primary), var(--secondary));
             border-radius: 5px;
         }
+
+          .card__article {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      
+    }
+
+    .card__img {
+      width: 300px;
+      border-radius: 1.5rem;
+      align-items: center;
+
+    }
+
+    .card__data {
+      width: 220px;
+      background-color: var(--container-color);
+      padding: 1rem;
+      box-shadow: 0 8px 24px hsla(318, 98%, 49%, 0.979);
+      border-radius: 1rem;
+      position: absolute;
+      bottom: -9rem;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      opacity: 0;
+      transition: opacity 1s 1s;
+    }
+
+    .card__description {
+      display: block;
+      font-size: 50px;
+      margin-bottom: .25rem;
+    }
+
+    .card__title {
+      font-size: 23px;
+      font-weight: 500;
+      color: var(--title-color);
+      margin-bottom: .75rem;
+    }
+
+    .card__button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 20px;
+      background-color: #f702ff;
+      color: #000000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all var(--transition-speed);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      box-shadow: 0 0 10px #e100ff;
+    }
+
+    .card__button:hover {
+      background-color: #f7f7f7;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 42, 110, 0.541);
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px #e100ff;
+      }
+
+      to {
+        box-shadow: 0 0 20px #ff00f0;
+      }
+    }
+
+    /* Naming animations in hover */
+    .card__article:hover .card__data {
+      animation: show-data 1s forwards;
+      opacity: 1;
+      transition: opacity .3s;
+    }
+
+    .card__article:hover {
+      animation: remove-overflow 2s forwards;
+    }
+
+    .card__article:not(:hover) {
+      animation: show-overflow 2s forwards;
+    }
+
+    .card__article:not(:hover) .card__data {
+      animation: remove-data 1s forwards;
+    }
+
+    /* Card animation */
+    @keyframes show-data {
+      50% {
+        transform: translateY(-10rem);
+      }
+
+      100% {
+        transform: translateY(-7rem);
+      }
+    }
+
+    @keyframes remove-overflow {
+      to {
+        overflow: initial;
+      }
+    }
+
+    @keyframes remove-data {
+      0% {
+        transform: translateY(-7rem);
+      }
+
+      50% {
+        transform: translateY(-10rem);
+      }
+
+      100% {
+        transform: translateY(.5rem);
+      }
+    }
+
+    @keyframes show-overflow {
+      0% {
+        overflow: initial;
+        pointer-events: none;
+      }
+
+      50% {
+        overflow: hidden;
+      }
+    }
+
+    /* For small devices */
+    @media screen and (max-width: 340px) {
+
+
+      .card__data {
+        width: 250px;
+        padding: 1rem;
+      }
+    }
+
+    /* For medium devices */
+    @media screen and (min-width: 768px) {
+      .card__container {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1.5rem;
+      }
+    }
+
+    /* For large devices */
+    @media screen and (min-width: 1120px) {
+
+
+      .card__container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card__img {
+        width: 348px;
+      }
+
+      .card__data {
+        width: 280px;
+        padding-inline: 1rem;
+      }
+    }
+
+    #password-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .hidden1,
+    .hidden2 {
+      display: none;
+    }
+    .input {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(242, 243, 241, 0.562);
+      border: 1px solid var(--neno-blue);
+      border-radius: 5px;
+      color: rgb(27, 22, 22);
+      font-size: 16px;
+      font-family: var(--font-primary);
+      transition: all var(--transition-speed);
+      box-shadow: inset 0 0 10px rgba(169, 0, 236, 0.979);
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--neno-blue);
+      box-shadow: 0 0 10px var(--light-blue), inset 0 0 10px rgba(240, 2, 169, 0.74);
+      background: rgba(255, 255, 255, 0.836);
+    }
+
+     @media(prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: white;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: white;
+        color: black;
+      }
+    }
     </style>
 </head>
 <body>
@@ -1021,6 +1236,33 @@
             </div>
         </div>
     </section>
+    
+    <section class="download" id="Download">
+
+        <h2 class="section-title">Download</h2>
+        <p style="text-align: center; margin-bottom: 50px; color: rgba(255,255,255,0.8); max-width: 700px; margin-left: auto; margin-right: auto;">Download Your Designs Now...</p>
+      <div class="card__container">
+        
+        <article class="card__article">
+        <center>
+<img src="sample/Profile.jpg" alt="image" class="card__img">
+</center>
+          <div class="card__data">
+            <center>
+              <h2 class="card__title">private-01</h2>
+              <button id="See-Content" class="card__button">Password</button>
+            </center>
+            <div id="password-container">
+              <input type="password" id="password-input" placeholder="Enter Password" class="input">
+              <center><button id="submit-password" class="card__button">Submit</button>
+              </center>
+            </div>
+          </div>
+        
+      </div>
+
+
+    </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -1180,6 +1422,63 @@
                 }
             });
         });
+        
     </script>
+    <Script>
+        const SeeContent =document.getElementById('See-Content');
+const passwordContainer = document.getElementById('password-container');
+const passwordInput = document.getElementById('password-input');
+const submitPassword = document.getElementById('submit-password');
+const errorMessage = document.getElementById('error-message');
+
+
+const SeeContent1 =document.getElementById('See-Content-1');
+const passwordContainer1 = document.getElementById('password-container-1');
+const passwordInput1 = document.getElementById('password-input-1');
+const submitPassword1 = document.getElementById('submit-password-1');
+const errorMessage1 = document.getElementById('error-message-1');
+
+const correctpassword = "001@Thuli_$Deshan:T1-M:T";
+const correctPassword = "002@Thuli_$Deshan:T1-S:T";
+
+SeeContent.addEventListener('click', function(){
+    passwordContainer.style.display = 'block';
+});
+
+submitPassword.addEventListener('click',function(){
+    if(passwordInput.value === correctpassword){
+        window.location.href ="Download.html";
+    }else{
+        errorMessage.classList.remove('hidden1');
+        passwordInput.value = '';
+    }
+});
+
+passwordInput.addEventListener('keyup', function(event){
+    if(event.key === 'Enter'){
+        submitPassword.click();
+    }
+});
+
+SeeContent1.addEventListener('click', function(){
+    passwordContainer1.style.display = 'block';
+});
+
+submitPassword1.addEventListener('click',function(){
+    if(passwordInput1.value === correctPassword){
+        window.location.href ="Download.html";
+    }else{
+        errorMessage1.classList.remove('hidden2');
+        passwordInput1.value = '';
+    }
+});
+
+passwordInput1.addEventListener('keyup', function(event){
+    if(event.key === 'Enter'){
+        submitPassword1.click();
+    }
+});
+
+    </Script>
 </body>
 </html>
