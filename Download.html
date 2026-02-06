@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Center</title>  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Orbitron',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#050d1f,#02030f);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:700px;
+      background:rgba(0,15,40,0.7);
+      backdrop-filter:blur(12px);
+      border-radius:20px;
+      padding:30px;
+      border:1px solid rgba(0,255,255,0.3);
+      box-shadow:0 0 25px #00f2ff44;
+    }
+
+    h1{
+      text-align:center;
+      color:#00f2ff;
+      margin-bottom:10px;
+    }
+
+    p{
+      text-align:center;
+      font-size:14px;
+      opacity:0.8;
+      margin-bottom:25px;
+    }
+
+    /* Search */
+    .search-box{
+      width:100%;
+      padding:10px 15px;
+      border-radius:25px;
+      border:none;
+      outline:none;
+      margin-bottom:20px;
+      background:#001b2f;
+      color:#00f2ff;
+    }
+
+    /* File List */
+    .file-list{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:15px;
+      max-height:400px;
+      overflow-y:auto;
+      padding-right:5px;
+    }
+
+    .file-card{
+      background:rgba(0,255,255,0.05);
+      border:1px solid rgba(0,255,255,0.2);
+      border-radius:15px;
+      padding:15px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:0.3s;
+    }
+
+    .file-card:hover{
+      box-shadow:0 0 15px #00f2ff66;
+      transform:scale(1.02);
+    }
+
+    .file-info span{
+      display:block;
+      font-size:13px;
+      opacity:0.9;
+    }
+
+    .file-info .name{
+      color:#00f2ff;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    button{
+      padding:8px 18px;
+      border:none;
+      border-radius:20px;
+      background:linear-gradient(90deg,#00f2ff,#0077ff);
+      color:#000;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 0 10px #00f2ff99;
+    }
+
+    button:hover{
+      transform:scale(1.1);
+      box-shadow:0 0 20px #00f2ff;
+    }
+
+    /* Scrollbar */
+    .file-list::-webkit-scrollbar{
+      width:6px;
+    }
+
+    .file-list::-webkit-scrollbar-thumb{
+      background:#00f2ff88;
+      border-radius:10px;
+    }
+
+    #status{
+      margin-top:15px;
+      font-size:13px;
+      text-align:center;
+      color:#00ffcc;
+      min-height:18px;
+    }
+
+  </style></head>
+<body>  <div class="container"><h1>Download Center</h1>
+<p>Secure Futuristic File Management System</p>
+
+<!-- Search -->
+<input type="text" id="search" class="search-box" placeholder="Search file..." onkeyup="filterFiles()">
+
+<!-- File List -->
+<div class="file-list" id="fileList">
+
+  <!-- File Item -->
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">January Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/January card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">February Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/February card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">March Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/March card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">April Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/April card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">May Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/May card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">June Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/June card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">July Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/July card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">August Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/August card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">September Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/September card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">October Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/October card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">November Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/November card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2026 Card">
+    <div class="file-info">
+      <span class="name">December Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2026/December card.png')">Download</button>
+  </div>
+
+
+    <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 January Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 January card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 February Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 February card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 March Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 March card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 April Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 April card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 May Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 May card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 June Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 June card.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 July Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 july.png')">Download</button>
+  </div>
+  <div class="file-card" data-name="2027 Card">
+    <div class="file-info">
+      <span class="name">2027 August Card</span>
+      <span>Size: 1.0 MB</span>
+      <span>Security: AES-256</span>
+    </div>
+    <button onclick="downloadFile('Project/2027/2027 August card.png')">Download</button>
+  </div>
+
+
+
+  <div class="file-card" data-name="report">
+    <div class="file-info">
+      <span class="name">Annual_Report.pdf</span>
+      <span>Size: 4.2 MB</span>
+      <span>Security: Protected</span>
+    </div>
+    <button onclick="downloadFile('files/Annual_Report.pdf')">Download</button>
+  </div>
+
+  <div class="file-card" data-name="software setup">
+    <div class="file-info">
+      <span class="name">Setup_Tool.exe</span>
+      <span>Size: 48 MB</span>
+      <span>Security: Verified</span>
+    </div>
+    <button onclick="downloadFile('files/Setup_Tool.exe')">Download</button>
+  </div>
+
+  <div class="file-card" data-name="presentation">
+    <div class="file-info">
+      <span class="name">Presentation.pptx</span>
+      <span>Size: 7.1 MB</span>
+      <span>Security: Encrypted</span>
+    </div>
+    <button onclick="downloadFile('files/Presentation.pptx')">Download</button>
+  </div>
+
+</div>
+
+<div id="status"></div>
+
+  </div>  <script>
+
+    function downloadFile(link){
+      const status=document.getElementById('status');
+
+      status.innerText="Connecting to server...";
+
+      setTimeout(()=>{
+        status.innerText="Starting download...";
+        window.location.href=link;
+      },800);
+    }
+
+    /* Search Filter */
+    function filterFiles(){
+      const input=document.getElementById('search').value.toLowerCase();
+      const files=document.querySelectorAll('.file-card');
+
+      files.forEach(file=>{
+        const name=file.getAttribute('data-name');
+
+        if(name.includes(input)){
+          file.style.display='flex';
+        }else{
+          file.style.display='none';
+        }
+      });
+    }
+
+  </script></body>
+</html>
